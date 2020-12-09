@@ -1,0 +1,31 @@
+---
+  - name: Install Java via package manager for UBUNTU
+    hosts: ubuntu
+
+    tasks:
+    - name: Installing Java
+      apt:
+        name: openjdk-8-jre-headless
+        state: latest
+        update_cache: yes
+
+  - name: Install Java via package manager for CENTOS
+    hosts: centos
+
+    tasks:
+    - name: Installing Java
+      yum:
+        name: java-1.8.0-openjdk
+        state: latest
+        update_cache: yes
+
+  - name: PIP Install for UBUNTU & CENTOS
+    hosts: all
+
+    tasks:
+    - name: Installing boto, ansible, and openstack
+      pip:
+        name:
+           - boto
+           - ansible
+           - python-openstackclient
