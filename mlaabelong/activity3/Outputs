@@ -1,0 +1,7 @@
+-- All Outputs from the given tasks --
+  user: abelong
+  hostname: ubuntu-1810217
+  id:
+   uid=1000(abelong)
+   gid=1000(abelong)
+   groups=1000(abelong)
