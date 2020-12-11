@@ -1,0 +1,10 @@
+---
+  - name: Install Java via package manager for UBUNTU
+    hosts: ubuntu
+    roles:
+      - UBUNTU_PACKAGE_MANAGER
+
+  - name: Install Java via package manager for CENTOS
+    hosts: centos
+    roles:
+      - CENTOS_PACKAGE_MANAGER        

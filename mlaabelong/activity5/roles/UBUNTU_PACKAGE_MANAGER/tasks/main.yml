@@ -1,0 +1,14 @@
+---
+# tasks file for roles/UBUNTU_PACKAGE_MANAGER
+  - name: Installing Java
+    apt:
+      name: openjdk-8-jre-headless
+      state: latest
+      update_cache: YES
+
+  - name: Installing boto,ansible, and openstack
+    pip:
+      name:
+        - boto
+        - ansible
+        - python-openstackclient
