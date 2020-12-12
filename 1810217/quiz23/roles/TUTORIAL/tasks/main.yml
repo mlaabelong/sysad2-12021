@@ -1,0 +1,57 @@
+---
+# tasks file for roles/TUTORIAL
+
+  - name: Updating apt in UBUNTU
+    apt:
+      update_cache: YES
+
+  - name: Installing Apache using Ubuntu's package manager
+    apt:
+      name: apache2
+      state: latest
+
+  - name: Start the apache2 service
+    service:
+      name: apache2
+      state: started
+      enabled: YES
+
+  - name: whitelist apache2 in ufw
+    ufw:
+      rule: deny
+      port: '80'
+      proto: tcp
+  
+  - name: Check Web Service if up
+    uri:
+      url: http://{{ item }}/
+    loop:
+      - 10.0.2.15
+
+  - name: Installing MySQL-Server
+    apt:
+      name: mysql-server
+      state: latest
+
+  - name: Start the mysql
+    service:
+      name: mysql
+      state: started
+      enabled: YES
+
+  - name: Installing PHP packages
+    apt:
+      name:
+        - php
+        - php-mysql
+        - libapache2-mod-php
+
+  - name: HTML
+    copy:
+      content: " QUIZ 2.2 ABELONG "
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: '0644'
+
+

@@ -1,0 +1,5 @@
+---
+- name: Installing Apache, MySQL, PHP(LAMP) stack on Ubuntu 20.04
+  hosts: ubuntu
+  roles:
+    - TUTORIAL
