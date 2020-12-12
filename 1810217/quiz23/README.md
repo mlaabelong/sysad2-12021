@@ -14,6 +14,7 @@ __Step 4:__ Creating a Virtual Host for your Website
 
 See the [_Link_](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-20-04) for more information.
 
+
 __Files__
 
 _ansible.cfg_
