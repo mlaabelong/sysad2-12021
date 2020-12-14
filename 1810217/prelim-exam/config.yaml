@@ -1,0 +1,13 @@
+---
+- name: Playbook for Prelim Exam
+  hosts: ubuntu
+  become: YES
+  vars:
+    user: MARK
+    username: mlaabelong
+
+  roles:
+    - Python
+    - Java
+    - Change-MOTD
+    - Create-User

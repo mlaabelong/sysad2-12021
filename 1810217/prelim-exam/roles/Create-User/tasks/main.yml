@@ -1,0 +1,6 @@
+---
+# tasks file for Create-User
+
+  - name: Creating a User
+    user:
+      name: MARK

@@ -1,0 +1,22 @@
+---
+# tasks file for Python
+#
+  - name: Update apt in UBUNTU
+    apt:
+      update_cache: YES
+
+  - name: Installing Python3
+    apt:
+      name: python3
+      state: latest
+
+  - name: Installing pip3
+    apt:
+      name: python3-pip
+      state: latest
+
+  - name: pip3 as default pip
+    command: update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+
+  - name: python3 as a default python
+    command: update-alternatives --install /usr/bin/python python /usr/bin/python3 10
