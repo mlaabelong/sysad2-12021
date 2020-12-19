@@ -1,0 +1,13 @@
+---
+- name: INSTALLATION OF THE FOLLOWING IN UBUNTU:(dhcpd, bind9, vsftpd, samba, httpd, mariadb)
+  become: YES
+  hosts: ubuntu
+  roles:
+    - UBUNTU
+
+- name: INSTALLATION OF THE FOLLOWING IN CENTOS:(dhcpd, bind9, vsftpd, samba, httpd, mariadb)
+  become: YES
+  hosts: centos
+  roles:
+    - CENTOS
+

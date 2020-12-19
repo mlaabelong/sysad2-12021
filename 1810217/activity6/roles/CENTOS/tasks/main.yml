@@ -1,0 +1,42 @@
+---
+# tasks file for CENTOS
+  - name: Installing dhcpd
+    yum:
+      name: dhcp-server
+      state: latest
+      update_cache: YES
+
+  - name: Installing bind9
+    yum:
+      name:
+        - bind
+        - bind-utils
+      state: latest
+      update_cache: YES
+
+  - name: Installing vsftpd
+    yum:
+      name: vsftpd
+      state: latest
+      update_cache: YES
+
+  - name: Installing samba
+    yum:
+      name:
+        - samba
+        - samba-client
+        - samba-common
+      state: latest
+      update_cache: YES
+
+  - name: Installing httpd
+    yum:
+      name: httpd
+      state: latest
+      update_cache: YES
+
+  - name: Installing mariadb
+    yum:
+      name: mariadb-server
+      state: latest
+      update_cache: YES
