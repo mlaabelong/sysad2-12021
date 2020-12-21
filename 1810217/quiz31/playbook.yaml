@@ -1,0 +1,12 @@
+---
+ - name: Installation of vsftpd server in UBUNTU
+   become: YES
+   hosts: ubuntu
+   roles:
+     - UBUNTU
+
+ - name: Installation of vsftpd server in CENTOS
+   become: YES
+   hosts: centos
+   roles:
+     - CENTOS

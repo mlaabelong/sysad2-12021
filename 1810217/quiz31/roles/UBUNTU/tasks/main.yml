@@ -1,0 +1,58 @@
+---
+# tasks file for UBUNTU
+ - name: Installing vsftpd
+   apt:
+     name: vsftpd
+     state: latest
+     update_cache: YES
+
+ - name: Disabling Firewall
+   service:
+     name: ufw
+     state: stopped
+     enabled: NO
+
+ - name: Create mark User
+   user:
+     name: mark
+     comment: "Mark Abelong"
+     password: $5$mPCpR56JlULh.IJu$4yett1ykO/xNCW709xCOoCVQOVtXhPj0k9RXSV.NLJ.
+
+ - name: Append DenyUsers mark
+   lineinfile:
+     path: /etc/ssh/sshd_config
+     line: "DenyUsers abelong"
+   register: sshd_config
+
+ - name: Restart sshd
+   service:
+     name: sshd
+     state: restarted
+   when: sshd_config.changed
+
+ - name: Creating ftp folder
+   file:
+     path: /home/mark/ftp
+     state: directory
+     owner: nobody
+     group: nogroup
+     mode: '0555'
+
+ - name: Creating files folder
+   file:
+     path: /home/mark/ftp/files
+     state: directory
+     owner: mark
+     group: mark
+
+ - name: Copying /etc/vsftpd.conf
+   copy:
+     src: vsftpd.conf
+     dest: /etc/vsftpd.conf
+   register: vsftpd_config
+
+ - name: Restarting vsftpd
+   service:
+     name: vsftpd
+     state: restarted
+   when: vsftpd_config.changed
