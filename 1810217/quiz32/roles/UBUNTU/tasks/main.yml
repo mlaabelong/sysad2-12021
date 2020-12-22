@@ -1,0 +1,53 @@
+---
+# tasks file for UBUNTU
+ - name: Installing Apache2
+   apt:
+     name: apache2
+     state: latest
+     update_cache: YES
+
+ - name: Disabling Firewall
+   service:
+     name: ufw
+     state: stopped
+     enabled: NO
+
+ - name: Creating User for Apache2
+   user:
+     name: louie
+     comment: "Louie Abelong"
+     password: $5$mPCpR56JlULh.IJu$4yett1ykO/xNCW709xCOoCVtXhPj0k9RXSV.NLJ.
+
+ - name: Adding DenyUsers
+   lineinfile:
+     path: /etc/ssh/sshd_config
+     line: "DenyUsers louie"
+   register: sshd_config
+
+ - name: Restarting sshd service
+   service:
+     name: sshd
+     state: restarted
+   when: sshd_config.changed
+
+ - name: Creating Domain
+   file:
+     path: /var/www/louie
+     state: directory
+     owner: louie
+     group: louie
+     mode: '755'
+
+ - name: Creating index.html
+   copy:
+     content: "Quiz 3.1 ABELONG"
+     dest: /var/www/louie/index.html
+   register: apache_index
+
+ - name: Restarting Apache2 service
+   service:
+     name: apache2
+     state: restarted
+     enabled: YES
+   when: apache_index.changed
+

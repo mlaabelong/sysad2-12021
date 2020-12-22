@@ -1,0 +1,12 @@
+---
+ - name: Installation and Configuring an httpd server in UBUNTU
+   become: YES
+   hosts: ubuntu
+   roles:
+     - UBUNTU
+
+ - name: Installation and Configuring an httpd server in CENTOS
+   become: YES
+   hosts: centos
+   roles:
+     - CENTOS
