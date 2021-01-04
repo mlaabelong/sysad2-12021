@@ -1,0 +1,32 @@
+---
+# tasks file for Ubuntu_Nagios_Core_Packages
+ - name: Installing Nagios Core Packages
+   apt:
+     name:
+       - apache2
+       - php
+       - openssl
+       - perl
+       - make
+       - php-gd
+       - build-essential
+       - libgd-dev
+       - wget
+       - apache2-utils
+       - unzip
+       - libapache2-mod-php
+       - libperl-dev
+       - libssl-dev
+       - daemon
+     state: latest
+     update_cache: YES
+
+ - name: Adding Group Nagios cmd
+   group:
+     name: nagcmd
+     state: present
+
+ - name: Adding Nagios as user
+   user:
+     name: nagios
+     group: nagcmd

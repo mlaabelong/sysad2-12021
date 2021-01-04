@@ -1,0 +1,16 @@
+---
+ - name: Installation of Nagios Core in Ubuntu
+   become: YES
+   hosts: ubuntu
+   roles:
+     - Ubuntu_Nagios_Core_Packages
+     - Ubuntu_Nagmain
+     - Ubuntu_Nagplugs
+
+ - name: Installation of Nagios Core in Centos
+   become: YES
+   hosts: centos
+   roles:
+     - Centos_Nagios_Core_Packages
+     - Centos_Nagmain
+     - Centos_Nagplugs

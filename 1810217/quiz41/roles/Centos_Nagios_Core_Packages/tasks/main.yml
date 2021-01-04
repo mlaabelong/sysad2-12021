@@ -1,0 +1,44 @@
+---
+# tasks file for Centos_Nagios_Core_Packages
+ - name: Installing httpd, mariadb, phpmysql, php-fpm
+   dnf:
+     name:
+       - httpd
+       - mariadb-server
+       - php-mysqlnd
+       - php-fpm
+     update_cache: YES
+
+ - name: Enabling and Starting httpd
+   service:
+     name: httpd
+     enabled: YES
+     state: started
+
+ - name: Enabling and Starting mariadb
+   service:
+     name: mariadb
+     enabled: YES
+     state: started
+
+ - name: Installing Required Packages
+   dnf:
+     name:
+       - postfix
+       - perl
+       - gcc
+       - glibc
+       - glibc-common
+       - gd
+       - gd-devel
+       - wget
+
+ - name: Group add nagcmd
+   group:
+     name: nagcmd
+     state: present
+
+ - name: Nagios User Account
+   user:
+     name: nagios
+     group: nagcmd

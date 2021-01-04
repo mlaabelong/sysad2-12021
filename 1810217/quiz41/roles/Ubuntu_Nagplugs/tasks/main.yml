@@ -1,0 +1,23 @@
+---
+# tasks file for Ubuntu_Nagplugs
+ - name: Installing Nagios Plugins
+   unarchive:
+     src: https://nagios-plugins.org/download/nagios-plugins-2.3.3.tar.gz
+     dest: /tmp
+     remote_src: YES
+
+ - name: Nagios Plugs Configuration
+   command: ./configure --with-nagios-user=nagios --with-nagios-group=nagcmd
+   args:
+     chdir: /tmp/nagios-plugins-2.3.3
+
+ - name: Configuration using make install
+   make:
+     chdir: /tmp/nagios-plugins-2.3.3
+     target: install
+
+ - name: Enabling and Starting Nagios Services
+   service:
+     name: nagios
+     enabled: YES
+     state: started
