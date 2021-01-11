@@ -1,0 +1,12 @@
+---
+ - name: Installation of Packages in Ubuntu
+   become: YES
+   hosts: ubuntu
+   roles:
+     - Ubuntu_ELK
+
+ - name: Installation of Packages in Centos
+   become: YES
+   hosts: centos
+   roles:
+     - Centos_ELK
