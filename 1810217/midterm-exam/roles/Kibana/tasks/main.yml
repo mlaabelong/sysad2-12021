@@ -1,0 +1,30 @@
+---
+# tasks file for Kibana
+ - name: Installing Kibana
+   apt:
+     name: kibana
+     state: present
+     update_cache: YES
+
+ - name: Updating
+   lineinfile:
+     path: /etc/kibana/kibana.yml
+     regexp: 'server.host'
+     line: 'server.host: "localhost"'
+
+ - name: Server Port
+   lineinfile:
+     path: /etc/kibana/kibana.yml
+     regexp: 'server.port'
+     line: 'server.port: 5601'
+
+ - name: Updating Config File
+   lineinfile:
+     path: /etc/kibana/kibana.yml
+     regexp: 'elasticsearch.hosts:'
+     line: 'elasticsearch.host: ["http://localhost:9200"]'
+
+ - name: Starting Kibana
+   service:
+     name: kibana
+     state: started

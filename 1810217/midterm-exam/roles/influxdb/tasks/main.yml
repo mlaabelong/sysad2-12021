@@ -1,0 +1,22 @@
+---
+# tasks file for influxdb
+ - name: Adding Influxdata Key
+   apt_key:
+     url: https://repos.influxdata.com/influxdb.key
+     state: present
+
+ - name: Adding Influxdata Repository
+   apt_repository:
+     repo: 'deb https://repos.influxdata.com/ubuntu focal stable'
+     state: present
+
+ - name: Installing Influxdb
+   apt:
+     name: influxdb
+     state: latest
+     update_cache: YES
+
+ - name: starting Influxdb
+   service:
+     name: influxdb
+     state: started

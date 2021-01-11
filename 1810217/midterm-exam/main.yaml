@@ -1,0 +1,64 @@
+---
+ - name: Installation of Elastic
+   vars_files:
+     - ./config.yaml
+   hosts: Elastic
+   roles:
+     - Elastic
+
+ - name: Installation of Kibana
+   hosts: Kibana
+   vars_files:
+     - ./config.yaml
+   roles:
+     - Kibana
+
+ - name: Installation of Logstash
+   vars_files:
+     - ./config.yaml
+   hosts: Logstash
+   roles:
+     - Logstash
+
+ - name: Installation of Prometheus
+   vars_files:
+     - ./config.yaml
+   hosts: Prometheus
+   roles:
+     - Prometheus
+
+ - name: Installation of mariadb
+   vars_files:
+     - ./config.yaml
+   hosts: mariadb
+   roles:
+     - mariadb
+
+ - name: Installation of influxdb
+   vars_files:
+     - ./config.yaml
+   hosts: influxdb
+   roles:
+     - influxdb
+
+ - name: Installation of httpd
+   vars_files:
+     - ./config.yaml
+   hosts: httpd
+   roles:
+     - httpd
+
+ - name: Installation of Grafana
+   vars_files:
+     - ./config.yaml
+   hosts: Grafana
+   roles:
+     - Grafana
+
+ - name: Installatiion of Nagios
+   vars_files:
+     - ./config.yaml
+   hosts: Nagios
+   roles:
+     - Nagios
+

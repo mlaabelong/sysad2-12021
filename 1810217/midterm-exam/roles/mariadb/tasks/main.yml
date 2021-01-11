@@ -1,0 +1,12 @@
+---
+# tasks file for mariadb
+ - name: Installing MariaDB
+   apt:
+     name: mariadb-server-10.3
+     state: present
+     update_cache: YES
+
+ - name: Starting MariaDB
+   service:
+     name: mariadb
+     state: started

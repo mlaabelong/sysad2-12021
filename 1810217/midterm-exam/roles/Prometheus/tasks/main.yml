@@ -1,0 +1,19 @@
+---
+# tasks file for Prometheus
+ - name: Installing Nginx
+   apt:
+     name: nginx
+     state: latest
+     update_cache: YES
+
+ - name: Installing Prometheus
+   apt:
+     name: prometheus
+     state: latest
+     update_cache: YES
+
+ - name: Starting Prometheus
+   service:
+     name: prometheus
+     state: started
+     enabled: YES

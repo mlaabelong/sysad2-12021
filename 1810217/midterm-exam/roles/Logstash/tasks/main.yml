@@ -1,0 +1,28 @@
+---
+# tasks file for Logstash
+ - name: Installing Java and Nginx
+   apt:
+     name:
+       - default-jre
+       - nginx
+     state: latest
+     update_cache: YES
+
+ - name: Adding Logstash APT key
+   apt_key:
+     url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+     state: present
+
+ - name: Adding Logstash Repository
+   shell: echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+
+ - name: Installing Logstash
+   apt:
+     name: logstash
+     update_cache: YES
+
+ - name: Starting Logstash
+   service:
+     name: logstash
+     state: started
+

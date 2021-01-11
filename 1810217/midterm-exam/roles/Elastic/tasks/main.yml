@@ -1,0 +1,64 @@
+---
+# tasks file for Elastic
+ - name: Installing Java and Nginx
+   apt:
+     name:
+       - default-jre
+       - nginx
+     state: latest
+     update_cache: YES
+
+ - name: Installing APT Repository
+   apt:
+     name: apt-transport-https
+     state: present
+
+ - name: Adding Elastic search apt key
+   apt_key:
+     url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+     state: present
+
+ - name: Adding Elastic search repository
+   shell: echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+
+ - name: Updating Packages
+   apt:
+     update_cache: YES
+     force_apt_get: YES
+
+ - name: Installing Elastic search
+   apt:
+     name: elasticsearch
+     update_cache: YES
+
+ - name: Updating Elastic search
+   lineinfile:
+     destfile: /etc/elasticsearch/elasticsearch.yml
+     regexp: 'network.host'
+     line: 'network.host: 0.0.0.0'
+
+ - name: Updating Port
+   lineinfile:
+     destfile: /etc/elasticsearch/elasticsearch.yml
+     regexp: 'http.port'
+     line: 'http.port 9200'
+
+ - name: Allowing Outsiders
+   lineinfile:
+     destfile: /etc/elasticsearch/elasticsearch.yml
+     regexp: 'cluster.initial_master_nodes:'
+     line: 'cluster.initial_master_nodes: ["{{ ansible_default_ipv4.address }}"]'
+
+ - name: Creating config directory
+   file:
+     path: /etc/systemd/system/elasticsearch.service.d
+     state: directory
+     mode: '0755'
+
+ - name: TimeOut
+   shell: echo "[Service]\nTimeoutStartSec=180" | sudo tee /etc/systemd/system/elasticsearch.service.d/startup-timeout.conf
+
+ - name: Stopping ufw
+   service:
+     name: ufw
+     state: stopped

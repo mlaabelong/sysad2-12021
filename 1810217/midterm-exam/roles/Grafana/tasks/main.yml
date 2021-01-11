@@ -1,0 +1,18 @@
+---
+# tasks file for Grafana
+ - name: Adding Grafana Repository
+   copy:
+     src: grafana.repo
+     dest: /etc/yum.repos.d/
+
+ - name: Installing Grafana
+   yum:
+     name: grafana
+     state: latest
+     update_cache: YES
+
+ - name: Starting Grafana
+   service:
+     name: grafana-server
+     state: started
+
