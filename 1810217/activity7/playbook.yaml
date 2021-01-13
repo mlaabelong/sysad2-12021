@@ -1,0 +1,18 @@
+---
+ - name: Installation of ELK, Nagios, Grafana + Prometheus in Ubuntu
+   become: YES
+   hosts: ubuntu
+   roles:
+     - Ubuntu_ELK
+     - Ubuntu_Nagios
+     - Ubuntu_Grafana
+     - Ubuntu_Prometheus
+
+ - name: Installation of ELK, Nagios, Grafana + Prometheus in Centos
+   become: YES
+   hosts: centos
+   roles:
+     - Centos_ELK
+     - Centos_Nagios
+     - Centos_Grafana
+     - Centos_Prometheus

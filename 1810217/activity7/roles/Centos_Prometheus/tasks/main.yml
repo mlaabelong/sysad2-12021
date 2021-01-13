@@ -1,0 +1,16 @@
+---
+# tasks file for Centos_Prometheus
+ - name: Adding prometheus rpm repo
+   copy:
+     src: prometheus.repo
+     dest: /etc/yum.repos.d/
+
+ - name: Updating Centos
+   yum:
+     update_cache: YES
+
+ - name: Installing prometheus
+   dnf:
+     name:
+       - prometheus2
+       - node_exporter
