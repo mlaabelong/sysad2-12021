@@ -1,0 +1,15 @@
+#Main
+
+prelim_exam: https://github.com/mlaabelong/sysad2-12021.git
+username: mlaabelong
+
+writable_chroot: allow_writeable_chroot=YES
+ftp_config: "allow_writeable_chroot=YES\npasv_min_port=30000\npasv_max_port=31000\nuserlist_file=/etc/vsftpd/user_list\nuserlist_deny=NO"
+
+ftp_debian: "pasv_enable=Yes\npasv_min_port=10000\npasv_max_port=10100\nallow_writeable_chroot=YES\nssl_tlsv1=YES\nssl_sslv2=NO\nssl_sslv3=NO"
+
+user: ftpadmin
+ftp_pass: $5$NximQYglwSvaC$JPALFctRxi9u9wjxAlHWb7rwSAggQeKBSE97Vj.dvg.
+
+nagiosuser_pass: $5$Pm/AD6AQPY7$LiWITsucki3K799sm.09CoQbpeBOjNI27yF9uZjVlYEB
+nagiosadmin_pass: abelong

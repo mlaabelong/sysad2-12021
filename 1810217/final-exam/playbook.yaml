@@ -1,0 +1,98 @@
+---
+ - name: Cloning Prelim Exam Repository for CentOS
+   hosts:
+     - centos
+   vars_files:
+     - config.yaml
+   roles:
+     - CentOS_Cloning
+
+ - name: Installation of CentOS Enterprise Service
+   hosts:
+     - centos
+   vars_files:
+     - config.yaml
+   roles:
+     - CentOS_FTP
+
+ - name: Installation of CentOS Monitoring Service
+   hosts:
+     - centos
+   vars_files:
+     - config.yaml
+   roles:
+     - CentOS_Nagios
+
+ - name: Change CentOS MOTD
+   hosts:
+     - centos
+   vars_files:
+     - config.yaml
+   roles:
+     - MOTD
+
+ - name: Cloning Prelim Exam Repository for Debian
+   hosts:
+     - debian
+   vars_files:
+     - config.yaml
+   roles:
+     - Debian_Cloning
+
+ - name: Installation of Debian Enterprise Service
+   hosts:
+     - debian
+   vars_files:
+     - config.yaml
+   roles:
+     - Debian_Nagios
+
+ - name: Installation of Debian Mornitoring Service
+   hosts:
+     - debian
+   vars_files:
+     - config.yaml
+   roles:
+     - Debian_FTP
+
+ - name: Change Debian MOTD
+   hosts:
+     - debian
+   vars_files:
+     - config.yaml
+   roles:
+     - MOTD
+
+ - name: Cloning Prelim Exam Repository for OpenSuse
+   hosts:
+     - opensuse
+   vars_files:
+     - config.yaml
+   roles:
+     - OpenSuse_Cloning
+
+ - name: Installation of OpenSuse Enterprise Service
+   hosts:
+     - opensuse
+   vars_files:
+     - config.yaml
+   roles:
+     - OpenSuse_FTP
+
+ - name: Installation of OpenSuse Monitoring Service
+   hosts:
+     - opensuse
+   vars_files:
+     - config.yaml
+   roles:
+     - OpenSuse_Nagios
+
+ - name: Change OpenSuse MOTD
+   hosts:
+     - opensuse
+   vars_files:
+     - config.yaml
+   roles:
+     - MOTD
+
+ 

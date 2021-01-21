@@ -1,0 +1,6 @@
+---
+# tasks file for MOTD
+ - name: Changing MOTD
+   lineinfile:
+     path: /etc/motd
+     line: Ansible Manage by '{{ username }}'
